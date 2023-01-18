@@ -1,0 +1,13 @@
+name: 🏗 build and 😵 test
+
+on: push
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build 🏗
+        run: gradle build
+      - name: Test 😵
+        run: gradle test
