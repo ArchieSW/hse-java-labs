@@ -2,7 +2,7 @@ package dev.archie;
 
 import java.util.Objects;
 
-public class ComplexNumber {
+public class ComplexNumber implements Cloneable {
 
     private double real;
     private double image;
@@ -14,6 +14,10 @@ public class ComplexNumber {
 
     public ComplexNumber(double real) {
         this(real, 0);
+    }
+
+    public ComplexNumber() {
+        this(0, 0);
     }
 
     public double getImage() {
@@ -58,5 +62,14 @@ public class ComplexNumber {
     @Override
     public int hashCode() {
         return Objects.hash(image, real);
+    }
+
+    @Override
+    public ComplexNumber clone() {
+        try {
+            return (ComplexNumber) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
