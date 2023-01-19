@@ -13,8 +13,7 @@ public class ComplexNumber {
     }
 
     public ComplexNumber(double real) {
-        this.real = real;
-        this.image = 0;
+        this(real, 0);
     }
 
     public double getImage() {
