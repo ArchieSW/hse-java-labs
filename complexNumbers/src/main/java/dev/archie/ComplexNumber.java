@@ -32,6 +32,16 @@ public class ComplexNumber {
         this.real = real;
     }
 
+    public String getAlgebraicForm() {
+        return toString();
+    }
+
+    public String getTrigonometricForm() {
+        double r = Operations.absolute(this);
+        double phi = Operations.argument(this);
+        return String.format("%f(cos(%f) + i * sin(%f))", r, phi, phi);
+    }
+
     @Override
     public String toString() {
         return real + " + " + image + "i";
