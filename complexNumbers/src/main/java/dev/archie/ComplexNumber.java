@@ -48,7 +48,12 @@ public class ComplexNumber implements Cloneable {
 
     @Override
     public String toString() {
-        return real + " + " + image + "i";
+        char sign = getImageSign();
+        return real + " " + sign +  " " + Math.abs(image) + "i";
+    }
+
+    private char getImageSign() {
+        return (Double.compare(image, 0.0) < 0) ? '-' : '+';
     }
 
     @Override

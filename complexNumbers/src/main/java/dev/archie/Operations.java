@@ -73,4 +73,16 @@ public class Operations {
         }
     }
 
+    public static ComplexNumber negative(ComplexNumber a) {
+        double real = a.getReal();
+        double image = a.getImage();
+        if (real == 0.0) {
+            real = -0.0;
+        }
+        if (image == 0.0) {
+            image = -0.0;
+        }
+        return new ComplexNumber(-real, -image);
+    }
+
 }
