@@ -1,6 +1,8 @@
 package dev.archie;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,9 +34,7 @@ class MatrixOperationsTest {
         ComplexMatrix a = new ComplexMatrix(1, 2);
         ComplexMatrix b = new ComplexMatrix(2, 1);
         IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class, () -> {
-                MatrixOperations.add(a, b);
-            });
+            IllegalArgumentException.class, () -> MatrixOperations.add(a, b));
         assertTrue(exception.getMessage()
             .contains(MatrixOperations.STACK_EXCEPTION_MESSAGE));
     }
@@ -116,9 +116,7 @@ class MatrixOperationsTest {
         ComplexMatrix a = new ComplexMatrix(2, 3);
         ComplexMatrix b = new ComplexMatrix(4, 2);
         IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class, () -> {
-                MatrixOperations.multiply(a, b);
-            });
+            IllegalArgumentException.class, () -> MatrixOperations.multiply(a, b));
         assertTrue(exception.getMessage().contains(MatrixOperations.MULTIPLY_EXCEPTION_MESSAGE));
     }
 
@@ -139,6 +137,44 @@ class MatrixOperationsTest {
         b.setValue(1, 0, new ComplexNumber(1));
         ComplexMatrix expected = b;
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void determinantForOneDimensionalMatrixShouldReturnRightValue() {
+        ComplexMatrix a = new ComplexMatrix(1, 1);
+        ComplexNumber value = new ComplexNumber(2);
+        a.setValue(0, 0, value);
+        ComplexNumber actual = MatrixOperations.determinant(a);
+        assertEquals(value, actual);
+    }
+
+    @Test
+    void determinantForTwoDimensionalMatrixShouldReturnRightValue() {
+        a.setValue(0, 0, new ComplexNumber(2));
+        a.setValue(1, 1, new ComplexNumber(2));
+        ComplexNumber expected = new ComplexNumber(4);
+        ComplexNumber actual = MatrixOperations.determinant(a);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void determinantForThreeDimensionalMatrixShouldReturnRightValue() {
+        a = new ComplexMatrix(3, 3);
+        a.setValue(0, 0, new ComplexNumber(1));
+        a.setValue(1, 1, new ComplexNumber(1));
+        a.setValue(2, 2, new ComplexNumber(1));
+        a.setValue(2, 1, new ComplexNumber(1));
+        a.setValue(1, 2, new ComplexNumber(2));
+
+        assertEquals(new ComplexNumber(-1), MatrixOperations.determinant(a));
+    }
+
+    @Test
+    void determinantShouldThrowForNonSquareMatrices() {
+        a = new ComplexMatrix(2, 3);
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class, () -> MatrixOperations.determinant(a));
+        assertTrue(exception.getMessage().contains(MatrixOperations.DETERMINANT_EXCEPTION_MESSAGE));
     }
 
     private static Stream<Arguments> getSourceForAdd() {
