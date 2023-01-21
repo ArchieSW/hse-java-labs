@@ -48,7 +48,7 @@ public class Operations {
     public static ComplexNumber divide(ComplexNumber complexNumber, double toDivide) {
         double a = complexNumber.getReal();
         double b = complexNumber.getImage();
-        return new ComplexNumber(a/toDivide, b/toDivide);
+        return new ComplexNumber(a / toDivide, b / toDivide);
     }
 
     public static double absolute(ComplexNumber complexNumber) {
