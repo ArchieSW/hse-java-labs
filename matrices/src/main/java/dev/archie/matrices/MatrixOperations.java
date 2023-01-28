@@ -1,4 +1,6 @@
-package dev.archie;
+package dev.archie.matrices;
+
+import dev.archie.complexnumber.ComplexNumber;
 
 public class MatrixOperations {
 
@@ -15,7 +17,7 @@ public class MatrixOperations {
         ComplexMatrix result = new ComplexMatrix(height, width);
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                ComplexNumber processedValue = Operations.add(a.getValue(i, j), b.getValue(i, j));
+                ComplexNumber processedValue = a.getValue(i, j).add(b.getValue(i, j));
                 result.setValue(i, j, processedValue);
             }
         }
@@ -29,7 +31,7 @@ public class MatrixOperations {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 ComplexNumber currentValue = a.getValue(i, j);
-                ComplexNumber negativeValue = Operations.negative(currentValue);
+                ComplexNumber negativeValue = currentValue.negative();
                 result.setValue(i, j, negativeValue);
             }
         }
@@ -43,7 +45,7 @@ public class MatrixOperations {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 ComplexNumber currentValue = a.getValue(i, j);
-                ComplexNumber multipliedValue = Operations.multiply(currentValue, b);
+                ComplexNumber multipliedValue = currentValue.multiply(b);
                 result.setValue(i, j, multipliedValue);
             }
         }
@@ -61,9 +63,8 @@ public class MatrixOperations {
             for (int j = 0; j < width; j++) {
                 ComplexNumber sum = new ComplexNumber();
                 for (int k = 0; k < a.getWidth(); k++) {
-                    ComplexNumber multiplied = Operations.multiply(a.getValue(i, k),
-                        b.getValue(k, j));
-                    sum = Operations.add(sum, multiplied);
+                    ComplexNumber multiplied = a.getValue(i, k).multiply(b.getValue(k, j));
+                    sum = sum.add(multiplied);
                 }
                 result.setValue(i, j, sum);
             }
@@ -77,7 +78,7 @@ public class MatrixOperations {
         ComplexMatrix result = new ComplexMatrix(width, height);
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                result.setValue(j, i, a.getValue(i, j).clone());
+                result.setValue(j, i, new ComplexNumber(a.getValue(i, j)));
             }
         }
         return result;
@@ -108,7 +109,7 @@ public class MatrixOperations {
         ComplexNumber b = a.getValue(1, 0);
         ComplexNumber c = a.getValue(0, 1);
         ComplexNumber d = a.getValue(1, 1);
-        return Operations.subtract(Operations.multiply(aVal, d), Operations.multiply(b, c));
+        return aVal.multiply(d).subtract(b.multiply(c));
     }
 
     private static ComplexNumber determinantForThreeDimensionMatrix(ComplexMatrix a) {
@@ -124,14 +125,11 @@ public class MatrixOperations {
         minor3.setValue(0, 0, a.getValue(1, 0)); minor3.setValue(0, 1, a.getValue(1, 1));
         minor3.setValue(1, 0, a.getValue(2, 0)); minor3.setValue(1, 1, a.getValue(2, 1));
 
-        ComplexNumber firstTerm = Operations.multiply(a.getValue(0, 0),
-            determinantForTwoDimensionMatrix(minor1));
-        ComplexNumber secondTerm = Operations.negative(Operations.multiply(a.getValue(0, 1),
-            determinantForTwoDimensionMatrix(minor2)));
-        ComplexNumber thirdTerm = Operations.multiply(a.getValue(0, 2),
-            determinantForTwoDimensionMatrix(minor3));
+        ComplexNumber firstTerm = a.getValue(0, 0).multiply(determinantForTwoDimensionMatrix(minor1));
+        ComplexNumber secondTerm = a.getValue(0, 1).multiply(determinantForTwoDimensionMatrix(minor2)).negative();
+        ComplexNumber thirdTerm = a.getValue(0, 2).multiply(determinantForTwoDimensionMatrix(minor3));
 
-        return Operations.add(Operations.add(firstTerm, secondTerm), thirdTerm);
+        return firstTerm.add(secondTerm).add(thirdTerm);
     }
 
 }

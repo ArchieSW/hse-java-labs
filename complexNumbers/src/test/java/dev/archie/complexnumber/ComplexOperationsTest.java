@@ -1,19 +1,18 @@
-package dev.archie;
+package dev.archie.complexnumber;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.stream.Stream;
-
-class OperationsTest {
+class ComplexOperationsTest {
 
     @ParameterizedTest
     @MethodSource("getSourceForAdd")
     void addComplexNumberShouldReturnRightComplexNumber(ComplexNumber complexNumber1,
         ComplexNumber complexNumber2, ComplexNumber expected) {
-        ComplexNumber actual = Operations.add(complexNumber1, complexNumber2);
+        ComplexNumber actual = ComplexOperations.add(complexNumber1, complexNumber2);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -21,7 +20,7 @@ class OperationsTest {
     @MethodSource("getSourceForAddWithDouble")
     void addDoubleShouldReturnRightComplexNumber(ComplexNumber complexNumber, double toAdd,
         ComplexNumber expected) {
-        ComplexNumber actual = Operations.add(complexNumber, toAdd);
+        ComplexNumber actual = ComplexOperations.add(complexNumber, toAdd);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -30,7 +29,7 @@ class OperationsTest {
     void multiplyToComplexNumberShouldReturnRightComplexNumber(ComplexNumber complexNumber1,
         ComplexNumber complexNumber2,
         ComplexNumber expected) {
-        ComplexNumber actual = Operations.multiply(complexNumber1, complexNumber2);
+        ComplexNumber actual = ComplexOperations.multiply(complexNumber1, complexNumber2);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -38,7 +37,7 @@ class OperationsTest {
     @MethodSource("getSourceForMultiplyWithDouble")
     void multiplyToDoubleShouldReturnRightComplexNumber(ComplexNumber complexNumber,
         double toMultiply, ComplexNumber expected) {
-        ComplexNumber actual = Operations.multiply(complexNumber, toMultiply);
+        ComplexNumber actual = ComplexOperations.multiply(complexNumber, toMultiply);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -47,7 +46,7 @@ class OperationsTest {
     void subtractToComplexNumberShouldReturnRightComplexNumber(ComplexNumber complexNumber1,
         ComplexNumber complexNumber2,
         ComplexNumber expected) {
-        ComplexNumber actual = Operations.subtract(complexNumber1, complexNumber2);
+        ComplexNumber actual = ComplexOperations.subtract(complexNumber1, complexNumber2);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -55,7 +54,7 @@ class OperationsTest {
     @MethodSource("getSourceForSubtractWithDouble")
     void subtractToDoubleShouldReturnRightComplexNumber(ComplexNumber complexNumber, double toAdd,
         ComplexNumber expected) {
-        ComplexNumber actual = Operations.subtract(complexNumber, toAdd);
+        ComplexNumber actual = ComplexOperations.subtract(complexNumber, toAdd);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -64,21 +63,21 @@ class OperationsTest {
     void divideToComplexShouldReturnRightComplexNumber(ComplexNumber complexNumber1,
         ComplexNumber complexNumber2,
         ComplexNumber expected) {
-        ComplexNumber actual = Operations.divide(complexNumber1, complexNumber2);
+        ComplexNumber actual = ComplexOperations.divide(complexNumber1, complexNumber2);
         Assertions.assertEquals(expected, actual);
     }
 
     @ParameterizedTest
     @MethodSource("getSourceForDivideWithDouble")
     void divideToNumberShouldReturnRightComplexNumber(ComplexNumber complexNumber, double toDivide, ComplexNumber expected) {
-        ComplexNumber actual = Operations.divide(complexNumber, toDivide);
+        ComplexNumber actual = ComplexOperations.divide(complexNumber, toDivide);
         Assertions.assertEquals(expected, actual);
     }
 
     @ParameterizedTest
     @MethodSource("getSourceForAbsolute")
     void absoluteShouldReturnRightAbsoluteNumber(ComplexNumber complexNumber, double expected) {
-        double actual = Operations.absolute(complexNumber);
+        double actual = ComplexOperations.absolute(complexNumber);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -86,7 +85,7 @@ class OperationsTest {
     @MethodSource("getSourceForArgument")
     void argumentShouldReturnRightArgumentOfComplexNumber(ComplexNumber complexNumber,
         double expected) {
-        double actual = Operations.argument(complexNumber);
+        double actual = ComplexOperations.argument(complexNumber);
         Assertions.assertEquals(expected, actual);
     }
 

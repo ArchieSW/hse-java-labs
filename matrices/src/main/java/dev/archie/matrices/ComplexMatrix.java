@@ -1,5 +1,6 @@
-package dev.archie;
+package dev.archie.matrices;
 
+import dev.archie.complexnumber.ComplexNumber;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -66,6 +67,6 @@ public class ComplexMatrix {
     }
 
     public void setValue(int i, int j, ComplexNumber value) {
-        matrix[i][j] = value.clone();
+        matrix[i][j] = new ComplexNumber(value);
     }
 }

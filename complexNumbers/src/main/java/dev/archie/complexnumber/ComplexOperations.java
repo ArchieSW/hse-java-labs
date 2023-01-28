@@ -1,27 +1,27 @@
-package dev.archie;
+package dev.archie.complexnumber;
 
-public class Operations {
+class ComplexOperations {
 
-    public static ComplexNumber add(ComplexNumber complexNumber1, ComplexNumber complexNumber2) {
+    static ComplexNumber add(ComplexNumber complexNumber1, ComplexNumber complexNumber2) {
         return new ComplexNumber(complexNumber1.getReal() + complexNumber2.getReal(),
             complexNumber1.getImage() + complexNumber2.getImage());
     }
 
-    public static ComplexNumber add(ComplexNumber complexNumber, double toAdd) {
+    static ComplexNumber add(ComplexNumber complexNumber, double toAdd) {
         return new ComplexNumber(complexNumber.getReal() + toAdd, complexNumber.getImage());
     }
 
-    public static ComplexNumber subtract(ComplexNumber complexNumber1,
+    static ComplexNumber subtract(ComplexNumber complexNumber1,
         ComplexNumber complexNumber2) {
         return new ComplexNumber(complexNumber1.getReal() - complexNumber2.getReal(),
             complexNumber1.getImage() - complexNumber2.getImage());
     }
 
-    public static ComplexNumber subtract(ComplexNumber complexNumber, double toSubtract) {
+    static ComplexNumber subtract(ComplexNumber complexNumber, double toSubtract) {
         return new ComplexNumber(complexNumber.getReal() - toSubtract, complexNumber.getImage());
     }
 
-    public static ComplexNumber multiply(ComplexNumber complexNumber1,
+    static ComplexNumber multiply(ComplexNumber complexNumber1,
         ComplexNumber complexNumber2) {
         double a = complexNumber1.getReal();
         double b = complexNumber1.getImage();
@@ -30,13 +30,13 @@ public class Operations {
         return new ComplexNumber(a * c - b * d, a * d + b * c);
     }
 
-    public static ComplexNumber multiply(ComplexNumber complexNumber, double toMultiply) {
+    static ComplexNumber multiply(ComplexNumber complexNumber, double toMultiply) {
         double a = complexNumber.getReal();
         double b = complexNumber.getImage();
         return new ComplexNumber(a * toMultiply, b * toMultiply);
     }
 
-    public static ComplexNumber divide(ComplexNumber complexNumber1, ComplexNumber complexNumber2) {
+    static ComplexNumber divide(ComplexNumber complexNumber1, ComplexNumber complexNumber2) {
         double a = complexNumber1.getReal();
         double b = complexNumber1.getImage();
         double c = complexNumber2.getReal();
@@ -45,19 +45,19 @@ public class Operations {
             (b * c - a * d) / (c * c + d * d));
     }
 
-    public static ComplexNumber divide(ComplexNumber complexNumber, double toDivide) {
+    static ComplexNumber divide(ComplexNumber complexNumber, double toDivide) {
         double a = complexNumber.getReal();
         double b = complexNumber.getImage();
         return new ComplexNumber(a / toDivide, b / toDivide);
     }
 
-    public static double absolute(ComplexNumber complexNumber) {
+    static double absolute(ComplexNumber complexNumber) {
         double a = complexNumber.getReal();
         double b = complexNumber.getImage();
         return Math.sqrt(a * a + b * b);
     }
 
-    public static double argument(ComplexNumber complexNumber) {
+    static double argument(ComplexNumber complexNumber) {
         double x = complexNumber.getReal();
         double y = complexNumber.getImage();
         if (x > 0) {
@@ -73,7 +73,7 @@ public class Operations {
         }
     }
 
-    public static ComplexNumber negative(ComplexNumber a) {
+    static ComplexNumber negative(ComplexNumber a) {
         double real = a.getReal();
         double image = a.getImage();
         if (real == 0.0) {
