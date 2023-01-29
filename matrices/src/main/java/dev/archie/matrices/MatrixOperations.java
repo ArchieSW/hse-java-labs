@@ -126,8 +126,10 @@ class MatrixOperations {
         minor2.setValue(1, 1, a.getValue(2, 2));
 
         ComplexMatrix minor3 = new ComplexMatrix(a.getHeight() - 1);
-        minor3.setValue(0, 0, a.getValue(1, 0)); minor3.setValue(0, 1, a.getValue(1, 1));
-        minor3.setValue(1, 0, a.getValue(2, 0)); minor3.setValue(1, 1, a.getValue(2, 1));
+        minor3.setValue(0, 0, a.getValue(1, 0));
+        minor3.setValue(0, 1, a.getValue(1, 1));
+        minor3.setValue(1, 0, a.getValue(2, 0));
+        minor3.setValue(1, 1, a.getValue(2, 1));
 
         ComplexNumber firstTerm = a.getValue(0, 0)
             .multiply(determinantForTwoDimensionMatrix(minor1));
