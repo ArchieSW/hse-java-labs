@@ -114,20 +114,27 @@ class MatrixOperations {
 
     private static ComplexNumber determinantForThreeDimensionMatrix(ComplexMatrix a) {
         ComplexMatrix minor1 = new ComplexMatrix(a.getHeight() - 1);
-        minor1.setValue(0, 0, a.getValue(1, 1)); minor1.setValue(0, 1, a.getValue(1, 2));
-        minor1.setValue(1, 0, a.getValue(2, 1)); minor1.setValue(1, 1, a.getValue(2, 2));
+        minor1.setValue(0, 0, a.getValue(1, 1));
+        minor1.setValue(0, 1, a.getValue(1, 2));
+        minor1.setValue(1, 0, a.getValue(2, 1));
+        minor1.setValue(1, 1, a.getValue(2, 2));
 
         ComplexMatrix minor2 = new ComplexMatrix(a.getHeight() - 1);
-        minor2.setValue(0, 0, a.getValue(1, 0)); minor2.setValue(0, 1, a.getValue(1, 2));
-        minor2.setValue(1, 0, a.getValue(2, 0)); minor2.setValue(1, 1, a.getValue(2, 2));
+        minor2.setValue(0, 0, a.getValue(1, 0));
+        minor2.setValue(0, 1, a.getValue(1, 2));
+        minor2.setValue(1, 0, a.getValue(2, 0));
+        minor2.setValue(1, 1, a.getValue(2, 2));
 
         ComplexMatrix minor3 = new ComplexMatrix(a.getHeight() - 1);
         minor3.setValue(0, 0, a.getValue(1, 0)); minor3.setValue(0, 1, a.getValue(1, 1));
         minor3.setValue(1, 0, a.getValue(2, 0)); minor3.setValue(1, 1, a.getValue(2, 1));
 
-        ComplexNumber firstTerm = a.getValue(0, 0).multiply(determinantForTwoDimensionMatrix(minor1));
-        ComplexNumber secondTerm = a.getValue(0, 1).multiply(determinantForTwoDimensionMatrix(minor2)).negative();
-        ComplexNumber thirdTerm = a.getValue(0, 2).multiply(determinantForTwoDimensionMatrix(minor3));
+        ComplexNumber firstTerm = a.getValue(0, 0)
+            .multiply(determinantForTwoDimensionMatrix(minor1));
+        ComplexNumber secondTerm = a.getValue(0, 1)
+            .multiply(determinantForTwoDimensionMatrix(minor2)).negative();
+        ComplexNumber thirdTerm = a.getValue(0, 2)
+            .multiply(determinantForTwoDimensionMatrix(minor3));
 
         return firstTerm.add(secondTerm).add(thirdTerm);
     }
