@@ -53,7 +53,7 @@ public class ComplexNumber {
     @Override
     public String toString() {
         char sign = getImageSign();
-        return real + " " + sign +  " " + Math.abs(image) + "i";
+        return real + " " + sign + " " + Math.abs(image) + "i";
     }
 
     private char getImageSign() {
@@ -106,8 +106,12 @@ public class ComplexNumber {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ComplexNumber that = (ComplexNumber) o;
         return Double.compare(that.image, image) == 0 && Double.compare(that.real, real) == 0;
     }

@@ -69,7 +69,8 @@ class ComplexOperationsTest {
 
     @ParameterizedTest
     @MethodSource("getSourceForDivideWithDouble")
-    void divideToNumberShouldReturnRightComplexNumber(ComplexNumber complexNumber, double toDivide, ComplexNumber expected) {
+    void divideToNumberShouldReturnRightComplexNumber(ComplexNumber complexNumber, double toDivide,
+        ComplexNumber expected) {
         ComplexNumber actual = ComplexOperations.divide(complexNumber, toDivide);
         Assertions.assertEquals(expected, actual);
     }
