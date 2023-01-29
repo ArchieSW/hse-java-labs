@@ -2,7 +2,7 @@ package dev.archie.matrices;
 
 import dev.archie.complexnumber.ComplexNumber;
 
-public class MatrixOperations {
+class MatrixOperations {
 
     public static final String STACK_EXCEPTION_MESSAGE = "Cannot stack matrices with different heights and widths";
     public static final String MULTIPLY_EXCEPTION_MESSAGE = "Cannot multiply matrices with different widths and heights";

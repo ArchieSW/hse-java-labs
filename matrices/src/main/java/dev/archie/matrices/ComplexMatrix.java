@@ -69,4 +69,29 @@ public class ComplexMatrix {
     public void setValue(int i, int j, ComplexNumber value) {
         matrix[i][j] = new ComplexNumber(value);
     }
+
+    public ComplexMatrix add(ComplexMatrix toAdd) {
+        return MatrixOperations.add(this, toAdd);
+    }
+
+    public ComplexMatrix negative() {
+        return MatrixOperations.negative(this);
+    }
+
+    public ComplexMatrix multiply(ComplexMatrix toMultiply) {
+        return MatrixOperations.multiply(this, toMultiply);
+    }
+
+    public ComplexMatrix multiply(ComplexNumber toMultiply) {
+        return MatrixOperations.multiply(this, toMultiply);
+    }
+
+    public ComplexMatrix transposition() {
+        return MatrixOperations.transposition(this);
+    }
+
+    public ComplexNumber determinant() {
+        return MatrixOperations.determinant(this);
+    }
+
 }
