@@ -2,48 +2,70 @@ package dev.archie.complexnumber;
 
 import java.util.Objects;
 
+/**
+ * ComplexNumber - класс для работы с комплексными числами
+ */
 public class ComplexNumber {
 
-    private double real;
-    private double image;
+    private final double real;
+    private final double image;
 
+    /**
+     * @param real действительная часть комплексного числа
+     * @param image мнимая часть комплексного числа
+     */
     public ComplexNumber(double real, double image) {
         this.image = image;
         this.real = real;
     }
 
+    /**
+     * @param real действительная часть комплексного числа
+     */
     public ComplexNumber(double real) {
         this(real, 0);
     }
 
+    /**
+     * Конструктор по умолчанию.
+     * Создает комплексное число 0 + 0i
+     */
     public ComplexNumber() {
         this(0, 0);
     }
 
+    /**
+     * Конструктор копирования
+     * @param toCopy копируемое комплексное число
+     */
     public ComplexNumber(ComplexNumber toCopy) {
         this(toCopy.getReal(), toCopy.getImage());
     }
 
+    /**
+     * @return мнимая часть комплексного числа
+     */
     public double getImage() {
         return image;
     }
 
-    public void setImage(double image) {
-        this.image = image;
-    }
-
+    /**
+     * @return реальная часть комплексного числа
+     */
     public double getReal() {
         return real;
     }
 
-    public void setReal(double real) {
-        this.real = real;
-    }
-
+    /**
+     * @return строка алгебраической формы комплексного числа.
+     */
     public String getAlgebraicForm() {
         return toString();
     }
 
+    /**
+     * @return строка тригонометрической формы комплексного числа
+     */
     public String getTrigonometricForm() {
         double r = ComplexOperations.absolute(this);
         double phi = ComplexOperations.argument(this);
@@ -60,46 +82,87 @@ public class ComplexNumber {
         return (Double.compare(image, 0.0) < 0) ? '-' : '+';
     }
 
+    /**
+     * @param b складываемое комплексного числа
+     * @return суммарное комплексное число
+     */
     public ComplexNumber add(ComplexNumber b) {
         return ComplexOperations.add(this, b);
     }
 
+    /**
+     * @param b складываемое действительное число
+     * @return суммарное комплексное число
+     */
     public ComplexNumber add(double b) {
         return ComplexOperations.add(this, b);
     }
 
+    /**
+     * @param b вычитаемое комплексное число
+     * @return результат вычитания
+     */
     public ComplexNumber subtract(ComplexNumber b) {
         return ComplexOperations.subtract(this, b);
     }
 
+    /**
+     * @param b вычитаемое действительное число
+     * @return результат вычитания
+     */
     public ComplexNumber subtract(double b) {
         return ComplexOperations.subtract(this, b);
     }
 
+    /**
+     * @param b множитель комплексного числа
+     * @return результат умножения
+     */
     public ComplexNumber multiply(ComplexNumber b) {
         return ComplexOperations.multiply(this, b);
     }
 
+    /**
+     * @param b множитель действительное число
+     * @return результат умножения
+     */
     public ComplexNumber multiply(double b) {
         return ComplexOperations.multiply(this, b);
     }
 
+    /**
+     * @param b делитель комплексное число
+     * @return результат деления
+     */
     public ComplexNumber divide(ComplexNumber b) {
         return ComplexOperations.divide(this, b);
     }
 
+    /**
+     * @param b делитель действительное число
+     * @return результат деления
+     */
     public ComplexNumber divide(double b) {
         return ComplexOperations.divide(this, b);
     }
 
-    public double absolute(ComplexNumber complexNumber) {
-        return ComplexOperations.absolute(complexNumber);
+    /**
+     * @return модуль комплексного числа
+     */
+    public double absolute() {
+        return ComplexOperations.absolute(this);
     }
 
-    public double argument(ComplexNumber complexNumber) {
-        return ComplexOperations.argument(complexNumber);
+    /**
+     * @return аргумент комплексного числа
+     */
+    public double argument() {
+        return ComplexOperations.argument(this);
     }
 
+    /**
+     * @return отрицательное комплексное число
+     */
     public ComplexNumber negative() {
         return ComplexOperations.negative(this);
     }
