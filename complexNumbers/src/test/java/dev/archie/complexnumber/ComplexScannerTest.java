@@ -1,5 +1,6 @@
 package dev.archie.complexnumber;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
@@ -18,13 +19,13 @@ class ComplexScannerTest {
     }
 
     public static Stream<Arguments> getSourcesForComplexScanner() {
-        return Stream.of(
-            Arguments.of(
-                new Scanner("1 + 2 i"), new ComplexNumber(1, 2)
-            ),
-            Arguments.of(
-                new Scanner("1.2 + 2.0 i"), new ComplexNumber(1.2, 2)
-            )
+        List<ComplexNumber> complexNumbers = List.of(
+            new ComplexNumber(1, 2),
+            new ComplexNumber(1.2, 2),
+            new ComplexNumber(1.2, -0.1)
         );
+
+        return complexNumbers.stream()
+            .map((complexNumber) -> Arguments.of(complexNumber.toString(), complexNumber));
     }
 }

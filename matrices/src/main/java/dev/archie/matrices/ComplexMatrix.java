@@ -47,11 +47,14 @@ public class ComplexMatrix {
 
     @Override
     public String toString() {
-        return "ComplexMatrix{" +
-            "matrix=" + Arrays.deepToString(matrix) +
-            ", height=" + height +
-            ", width=" + width +
-            '}';
+        StringBuilder result = new StringBuilder();
+        for (ComplexNumber[] row : matrix) {
+            for (ComplexNumber currentNumber : row) {
+                result.append(currentNumber.toString()).append("\t");
+            }
+            result.append("\n");
+        }
+        return result.toString();
     }
 
     public int getHeight() {

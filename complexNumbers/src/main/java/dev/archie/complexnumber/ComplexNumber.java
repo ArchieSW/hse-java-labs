@@ -53,7 +53,7 @@ public class ComplexNumber {
     @Override
     public String toString() {
         char sign = getImageSign();
-        return real + " " + sign + " " + Math.abs(image) + "i";
+        return real + " " + sign + " " + Math.abs(image) + " i";
     }
 
     private char getImageSign() {
