@@ -2,6 +2,9 @@ package dev.archie.application;
 
 import java.util.Optional;
 
+/**
+ * Опции для главного меню, обозначающии операции над комплексными матрицами
+ */
 enum Option {
     EXIT(1),
     MULTIPLY(2),
@@ -16,10 +19,17 @@ enum Option {
         this.optionIndex = optionIndex;
     }
 
+    /**
+     * @return индекс опции
+     */
     public int getOptionIndex() {
         return optionIndex;
     }
 
+    /**
+     * @param index индекс опции
+     * @return опция
+     */
     public static Optional<Option> getOptionFromIndex(int index) {
         for (Option option : Option.values()) {
             if (option.getOptionIndex() == index) {

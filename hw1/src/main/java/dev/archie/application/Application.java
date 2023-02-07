@@ -6,16 +6,26 @@ import dev.archie.matrices.ComplexMatrix;
 import dev.archie.matrices.MatrixScanner;
 import java.util.Scanner;
 
+/**
+ * Класс консольного приложения, показывающее главное меню с опциями для работы с комплексными
+ * числами
+ */
 public class Application {
 
     private final Scanner scanner;
     private final MatrixScanner matrixScanner;
 
+    /**
+     * @param scanner сканнер для ввода данных
+     */
     public Application(Scanner scanner) {
         this.scanner = scanner;
         this.matrixScanner = new MatrixScanner(scanner);
     }
 
+    /**
+     * Запуск приложения в бесконечном цикле (для остановки требуется ввести 1 из главного меню)
+     */
     public void run() {
         while (true) {
             printMainMenu();
