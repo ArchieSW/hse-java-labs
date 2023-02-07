@@ -3,14 +3,25 @@ package dev.archie.matrices;
 import dev.archie.complexnumber.ComplexScanner;
 import java.util.Scanner;
 
+/**
+ * Класс для считывания матрицы со сканнера
+ */
 public class MatrixScanner {
 
     private final Scanner scanner;
 
+    /**
+     * @param scanner для считывания матрицы
+     */
     public MatrixScanner(Scanner scanner) {
         this.scanner = scanner;
     }
 
+    /**
+     * @param height высота матрицы
+     * @param width ширина матрицы
+     * @return матрицы считанная со сканнера
+     */
     public ComplexMatrix nextMatrix(int height, int width) {
         ComplexScanner complexScanner = new ComplexScanner(scanner);
         ComplexMatrix complexMatrix = new ComplexMatrix(height, width);
