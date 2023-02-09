@@ -15,7 +15,7 @@ public class ComplexMatrix {
 
     /**
      * @param height высота матрицы
-     * @param width ширина матрицы
+     * @param width  ширина матрицы
      */
     public ComplexMatrix(int height, int width) {
         matrix = new ComplexNumber[height][width];
@@ -82,7 +82,8 @@ public class ComplexMatrix {
     }
 
     /**
-     * @param i индекс строки * @param j индекс столбца
+     * @param i индекс строки
+     * @param j индекс столбца
      * @return значение в пересечениях i-ой строки и j-го столбца
      */
     public ComplexNumber getValue(int i, int j) {
