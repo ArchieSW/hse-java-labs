@@ -91,9 +91,9 @@ public class ComplexMatrix {
     }
 
     /**
-     * @param i
-     * @param j
-     * @param value
+     * @param i индекс строки
+     * @param j индекс столбца
+     * @param value значение в i-ой строке и j-ом столбце
      */
     public void setValue(int i, int j, ComplexNumber value) {
         matrix[i][j] = new ComplexNumber(value);
