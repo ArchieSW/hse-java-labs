@@ -14,6 +14,7 @@ public class Application {
 
     private final Scanner scanner;
     private final MatrixScanner matrixScanner;
+    private boolean isRunning = false;
 
     /**
      * @param scanner сканнер для ввода данных
@@ -27,15 +28,21 @@ public class Application {
      * Запуск приложения в бесконечном цикле (для остановки требуется ввести 1 из главного меню)
      */
     public void run() {
-        while (true) {
+        isRunning = true;
+        while (isRunning) {
             printMainMenu();
             int choosedOption = scanner.nextInt();
             if (choosedOption == EXIT.getOptionIndex()) {
                 System.out.println("Goodbye!");
+                isRunning = false;
                 break;
             }
             processOption(choosedOption);
         }
+    }
+
+    public boolean isRunning() {
+        return isRunning;
     }
 
     private static void printMainMenu() {
