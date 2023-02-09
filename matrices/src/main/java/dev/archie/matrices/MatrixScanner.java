@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class MatrixScanner {
 
+    public static final String ILLEGAL_DIMENSIONS_MESSAGE = "Cannot read matrix with non positive dimensions";
     private final Scanner scanner;
 
     /**
@@ -19,10 +20,13 @@ public class MatrixScanner {
 
     /**
      * @param height высота матрицы
-     * @param width ширина матрицы
+     * @param width  ширина матрицы
      * @return матрицы считанная со сканнера
      */
     public ComplexMatrix nextMatrix(int height, int width) {
+        if (height <= 0 || width <= 0) {
+            throw new IllegalArgumentException(ILLEGAL_DIMENSIONS_MESSAGE);
+        }
         ComplexScanner complexScanner = new ComplexScanner(scanner);
         ComplexMatrix complexMatrix = new ComplexMatrix(height, width);
         for (int i = 0; i < height; ++i) {

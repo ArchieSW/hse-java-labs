@@ -1,6 +1,7 @@
 package dev.archie.matrices;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import dev.archie.complexnumber.ComplexNumber;
 import java.util.List;
@@ -19,6 +20,17 @@ class MatrixScannerTest {
         MatrixScanner matrixScanner = new MatrixScanner(scanner);
         ComplexMatrix actual = matrixScanner.nextMatrix(height, width);
         assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @MethodSource("getSourceForIllegalMatrices")
+    void nextMatrixShouldThrowOnNonPositiveDimensions(Scanner scanner, int height, int width)  {
+        MatrixScanner matrixScanner = new MatrixScanner(scanner);
+        IllegalArgumentException illegalArgumentException = assertThrows(
+            IllegalArgumentException.class, () -> {
+                matrixScanner.nextMatrix(height, width);
+            });
+        assertEquals(MatrixScanner.ILLEGAL_DIMENSIONS_MESSAGE, illegalArgumentException.getMessage());
     }
 
     public static Stream<Arguments> getSourceForMatrixScanner() {
@@ -41,5 +53,22 @@ class MatrixScannerTest {
         return matrices.stream()
             .map((matrix) -> Arguments.of(matrix.toString(), matrix.getHeight(), matrix.getWidth(),
                 matrix));
+    }
+
+    public static Stream<Arguments> getSourceForIllegalMatrices() {
+        return Stream.of(
+            Arguments.of(
+                new Scanner(" "), -1, 12
+            ),
+            Arguments.of(
+                new Scanner(" "), 12, -1
+            ),
+            Arguments.of(
+                new Scanner(" "), 0, 12
+            ),
+            Arguments.of(
+                new Scanner(" "), 10, 0
+            )
+        );
     }
 }
