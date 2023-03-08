@@ -2,4 +2,5 @@ rootProject.name = 'JavaHomeworks'
 include 'complexNumbers'
 include 'matrices'
 include 'hw1'
+include 'hw2'
 
