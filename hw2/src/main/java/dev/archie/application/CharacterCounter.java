@@ -15,6 +15,9 @@ public class CharacterCounter {
         while (scanner.hasNextLine()) {
             String currentLine = scanner.nextLine();
             for (char currentCharacter : currentLine.toCharArray()) {
+                if (!Character.isAlphabetic(currentCharacter)) {
+                    continue;
+                }
                 int currentFrequency = frequency.getOrDefault(currentCharacter, 0);
                 frequency.put(currentCharacter, currentFrequency + 1);
             }

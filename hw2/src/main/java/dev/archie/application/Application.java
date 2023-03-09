@@ -1,9 +1,8 @@
 package dev.archie.application;
 
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
 import java.util.Scanner;
@@ -31,11 +30,23 @@ public class Application {
      */
     public void run() {
         String inputFileName = askUserForFileName();
-        InputStream inputStream = getInputStream(inputFileName);
-        Scanner fileScanner = new Scanner(inputStream);
-        Map<Character, Integer> frequency = characterCounter.process(fileScanner);
+        File inputFile = new File(inputFileName);
+        Map<Character, Integer> frequency = tryProcessInputFile(inputFile);
         String outputFileName = askUserForFileName();
         writeFrequency(frequency, outputFileName);
+    }
+
+    private Map<Character, Integer> tryProcessInputFile(File inputFile) {
+        try (Scanner fileScanner = new Scanner(inputFile)) {
+            return characterCounter.process(fileScanner);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Failed to open file");
+        }
+    }
+
+    private String askUserForFileName() {
+        System.out.println("Enter filename:");
+        return scanner.nextLine().trim();
     }
 
     private void writeFrequency(Map<Character, Integer> frequency, String outputFileName) {
@@ -51,19 +62,4 @@ public class Application {
             .map(entry -> entry.getKey() + "=" + entry.getValue())
             .collect(Collectors.joining(",", "{", "}"));
     }
-
-    private String askUserForFileName() {
-        System.out.println("Enter filename:");
-        return scanner.nextLine().trim();
-    }
-
-    private InputStream getInputStream(String fileName) {
-        File file = new File(fileName);
-        try (InputStream inputStream = new FileInputStream(file)) {
-            return inputStream;
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to read from file");
-        }
-    }
-
 }
